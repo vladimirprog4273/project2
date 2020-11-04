@@ -1,0 +1,18 @@
+image: node:12-alpine
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run test:coverage
+          - npm run lint
+        services:
+          - mongo
+
+definitions:
+  services:
+    mongo:
+      image: mongo

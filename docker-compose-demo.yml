@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  app:
+    image: project2:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./data:/app/data
+    environment:
+      - AUTH_URL=
+      - API_URL=
+      - NODE_ENV=testing
+      - DB_URL=mongodb://mongo:27017/db
+      - EXPORTS_DIR=data/exports
+      - EXPORT_FILE_TTL=60
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
